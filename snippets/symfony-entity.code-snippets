@@ -1,0 +1,205 @@
+{
+  "sf-entity": {
+    "prefix": "sf-entity",
+    "description": "Doctrine Entity 클래스 (ORM 매핑 포함)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Entity};",
+      "",
+      "use Doctrine\\ORM\\Mapping as ORM;",
+      "use ${2:App\\Repository\\${3:MyEntity}Repository};",
+      "${4:use Doctrine\\Common\\Collections\\ArrayCollection;",
+      "use Doctrine\\Common\\Collections\\Collection;}",
+      "",
+      "#[ORM\\Entity(repositoryClass: ${3:MyEntity}Repository::class)]",
+      "#[ORM\\Table(name: '${5:my_table}')]",
+      "class ${3:MyEntity}",
+      "{",
+      "    #[ORM\\Id]",
+      "    #[ORM\\GeneratedValue]",
+      "    #[ORM\\Column(type: 'integer')]",
+      "    private ?int \\$id = null;",
+      "",
+      "    ${0}",
+      "",
+      "    public function getId(): ?int",
+      "    {",
+      "        return \\$this->id;",
+      "    }",
+      "}"
+    ]
+  },
+
+  "sf-repo": {
+    "prefix": "sf-repo",
+    "description": "Doctrine Repository 클래스 (ServiceEntityRepository)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Repository};",
+      "",
+      "use App\\Entity\\${2:MyEntity};",
+      "use Doctrine\\Bundle\\DoctrineBundle\\Repository\\ServiceEntityRepository;",
+      "use Doctrine\\Persistence\\ManagerRegistry;",
+      "",
+      "/**",
+      " * @extends ServiceEntityRepository<${2:MyEntity}>",
+      " */",
+      "class ${2:MyEntity}Repository extends ServiceEntityRepository",
+      "{",
+      "    public function __construct(ManagerRegistry \\$registry)",
+      "    {",
+      "        parent::__construct(\\$registry, ${2:MyEntity}::class);",
+      "    }",
+      "",
+      "    /**",
+      "     * @return ${2:MyEntity}[]",
+      "     */",
+      "    public function ${3:findActive}(): array",
+      "    {",
+      "        return \\$this->createQueryBuilder('${4:e}')",
+      "            ->andWhere('${4:e}.${5:field} = :val')",
+      "            ->setParameter('val', \\$${5:field})",
+      "            ->orderBy('${4:e}.id', 'ASC')",
+      "            ->getQuery()",
+      "            ->getResult();",
+      "        ${0}",
+      "    }",
+      "}"
+    ]
+  },
+
+  "sf-col": {
+    "prefix": "sf-col",
+    "description": "ORM\\Column 어트리뷰트 (속성)",
+    "body": [
+      "#[ORM\\Column(type: '${1:string}', length: ${2:255}${3:, nullable: ${4:false}})]",
+      "private ${1/(string)/?string/${1/(integer)/?int/${1/(boolean)/?bool/${1/(float)/?float/${1/(text)/?string/${1/(datetime)/?\\\\DateTimeInterface/}}}}}} \\$${5:field}${6: = null};"
+    ]
+  },
+
+  "sf-id-col": {
+    "prefix": "sf-id",
+    "description": "ORM Id + GeneratedValue",
+    "body": [
+      "#[ORM\\Id]",
+      "#[ORM\\GeneratedValue]",
+      "#[ORM\\Column(type: 'integer')]",
+      "private ?int \\$id = null;"
+    ]
+  },
+
+  "sf-relation-oto": {
+    "prefix": "sf-oto",
+    "description": "OneToOne 관계",
+    "body": [
+      "#[ORM\\OneToOne(targetEntity: ${1:TargetEntity}::class${2:, mappedBy: '${3:field}'}${4:, cascade: ['persist', 'remove']})]",
+      "private ?${1:TargetEntity} \\$${5:target} = null;",
+      "",
+      "public function get${5/(.*)/${1:/capitalize}/}(): ?${1:TargetEntity}",
+      "{",
+      "    return \\$this->${5:target};",
+      "}",
+      "",
+      "public function set${5/(.*)/${1:/capitalize}/}(?${1:TargetEntity} \\$${5:target}): self",
+      "{",
+      "    \\$this->${5:target} = \\$${5:target};",
+      "",
+      "    return \\$this;",
+      "}"
+    ]
+  },
+
+  "sf-relation-mto": {
+    "prefix": "sf-mto",
+    "description": "ManyToOne 관계 (소유 측)",
+    "body": [
+      "#[ORM\\ManyToOne(targetEntity: ${1:TargetEntity}::class${2:, inversedBy: '${3:items}'})]",
+      "#[ORM\\JoinColumn(nullable: ${4:false})]",
+      "private ?${1:TargetEntity} \\$${5:target} = null;",
+      "",
+      "public function get${5/(.*)/${1:/capitalize}/}(): ?${1:TargetEntity}",
+      "{",
+      "    return \\$this->${5:target};",
+      "}",
+      "",
+      "public function set${5/(.*)/${1:/capitalize}/}(?${1:TargetEntity} \\$${5:target}): self",
+      "{",
+      "    \\$this->${5:target} = \\$${5:target};",
+      "",
+      "    return \\$this;",
+      "}"
+    ]
+  },
+
+  "sf-relation-otm": {
+    "prefix": "sf-otm",
+    "description": "OneToMany 관계 (역측)",
+    "body": [
+      "#[ORM\\OneToMany(mappedBy: '${1:owner}', targetEntity: ${2:TargetEntity}::class${3:, cascade: ['persist', 'remove']}${4:, orphanRemoval: true})]",
+      "/**",
+      " * @var Collection<int, ${2:TargetEntity}>",
+      " */",
+      "private Collection \\$${5:items};",
+      "",
+      "public function __construct()",
+      "{",
+      "    \\$this->${5:items} = new ArrayCollection();",
+      "}",
+      "",
+      "/**",
+      " * @return Collection<int, ${2:TargetEntity}>",
+      " */",
+      "public function get${5/(.*)/${1:/capitalize}/}(): Collection",
+      "{",
+      "    return \\$this->${5:items};",
+      "}",
+      "",
+      "public function add${5/(.*)/${1:/singularize}/|${2:/capitalize}/}(?${2:TargetEntity} \\$${6:item}): self",
+      "{",
+      "    if (!\\$this->${5:items}->contains(\\$${6:item})) {",
+      "        \\$this->${5:items}->add(\\$${6:item});",
+      "        \\$this->${1:owner}Relation(\\$${6:item});",
+      "    }",
+      "",
+      "    return \\$this;",
+      "}",
+      "",
+      "public function remove${5/(.*)/${1:/singularize}/|${2:/capitalize}/}(?${2:TargetEntity} \\$${6:item}): self",
+      "{",
+      "    if (\\$this->${5:items}->removeElement(\\$${6:item})) {",
+      "        \\$this->${1:owner}Relation(\\$${6:item});",
+      "    }",
+      "",
+      "    return \\$this;",
+      "}",
+      "",
+      "private function ${1:owner}Relation(?${2:TargetEntity} \\$${6:item}): void",
+      "{",
+      "    if (\\$${6:item} !== null && \\$${6:item}->get${1/(.*)/${1:/capitalize}/}() !== \\$this) {",
+      "        \\$${6:item}->set${1/(.*)/${1:/capitalize}/}(\\$this);",
+      "    }",
+      "}"
+    ]
+  },
+
+  "sf-entity-lifecycle": {
+    "prefix": "sf-lifecycle",
+    "description": "Doctrine 생명주기 콜백 (PrePersist, PreUpdate)",
+    "body": [
+      "#[ORM\\PrePersist]",
+      "public function onPrePersist(): void",
+      "{",
+      "    \\$this->createdAt = new \\DateTimeImmutable();",
+      "    \\$this->updatedAt = new \\DateTimeImmutable();",
+      "}",
+      "",
+      "#[ORM\\PreUpdate]",
+      "public function onPreUpdate(): void",
+      "{",
+      "    \\$this->updatedAt = new \\DateTimeImmutable();",
+      "}"
+    ]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "sf-controller": {
+    "prefix": "sf-controller",
+    "description": "Symfony Controller 클래스 (생성자 주입 포함)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Controller};",
+      "",
+      "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+      "use Symfony\\Component\\HttpFoundation\\JsonResponse;",
+      "use Symfony\\Component\\HttpFoundation\\RedirectResponse;",
+      "use Symfony\\Component\\HttpFoundation\\Response;",
+      "use Symfony\\Component\\Routing\\Attribute\\Route;",
+      "${2:use ${3:App\\Service\\${4:MyService}};}",
+      "",
+      "class ${5:MyController} extends AbstractController",
+      "{",
+      "    public function __construct(",
+      "        private readonly ${4:MyService} \\$${6:service},",
+      "    ) {",
+      "    }",
+      "",
+      "    ${0}",
+      "}"
+    ]
+  },
+
+  "sf-route": {
+    "prefix": "sf-route",
+    "description": "#[Route] 어트리뷰트",
+    "body": [
+      "#[Route('/${1:path}', name: '${2:route_name}', methods: ['${3:GET}'])]"
+    ]
+  },
+
+  "sf-action": {
+    "prefix": "sf-action",
+    "description": "Symfony Controller 액션 메서드",
+    "body": [
+      "#[Route('/${1:path}', name: '${2:route_name}', methods: ['${3:GET}'])]",
+      "public function ${4:index}(Request \\$request): Response",
+      "{",
+      "    ${5:// TODO: 비즈니스 로직}",
+      "",
+      "    return \\$this->render('${6:template.html.twig}', [",
+      "        '${7:controller_name}' => '${8:value}',",
+      "    ]);",
+      "}"
+    ]
+  },
+
+  "sf-json": {
+    "prefix": "sf-json",
+    "description": "JSON 응답을 반환하는 액션",
+    "body": [
+      "#[Route('/${1:api/path}', name: '${2:api_route}', methods: ['${3:GET}'])]",
+      "public function ${4:api}(Request \\$request): JsonResponse",
+      "{",
+      "    \\$data = ${5:[",
+      "        '${6:key}' => '${7:value}',",
+      "    ]};",
+      "",
+      "    return \\$this->json(\\$data${8:, Response::HTTP_OK});",
+      "}"
+    ]
+  },
+
+  "sf-redirect": {
+    "prefix": "sf-redirect",
+    "description": "Redirect 응답을 반환하는 액션",
+    "body": [
+      "#[Route('/${1:redirect-path}', name: '${2:redirect_route}', methods: ['${3:POST}'])]",
+      "public function ${4:redirect}(Request \\$request): RedirectResponse",
+      "{",
+      "    ${5:// TODO: 처리 로직}",
+      "",
+      "    \\$this->addFlash('${6:success}', '${7:완료되었습니다.}');",
+      "",
+      "    return \\$this->redirectToRoute('${8:target_route}');",
+      "}"
+    ]
+  },
+
+  "sf-render": {
+    "prefix": "sf-render",
+    "description": "render() 템플릿 응답",
+    "body": [
+      "return \\$this->render('${1:template.html.twig}', [",
+      "    '${2:variable}' => \\$${3:variable},",
+      "]);"
+    ]
+  },
+
+  "sf-abstract-controller": {
+    "prefix": "sf-ac",
+    "description": "AbstractController 상속 기본 컨트롤러",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Controller};",
+      "",
+      "use Symfony\\Bundle\\FrameworkBundle\\Controller\\AbstractController;",
+      "use Symfony\\Component\\HttpFoundation\\Response;",
+      "use Symfony\\Component\\Routing\\Attribute\\Route;",
+      "",
+      "class ${2:MyController} extends AbstractController",
+      "{",
+      "    #[Route('/${3:path}', name: '${4:route_name}')]",
+      "    public function ${5:index}(): Response",
+      "    {",
+      "        return \\$this->render('${6:template.html.twig}');",
+      "    }",
+      "}"
+    ]
+  }
+}

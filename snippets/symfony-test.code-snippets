@@ -1,0 +1,289 @@
+{
+  "tdd-testcase": {
+    "prefix": "tdd-case",
+    "description": "PHPUnit TestCase 클래스 (Symfony KernelTestCase)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Tests\\${2:Unit}};",
+      "",
+      "use PHPUnit\\Framework\\Attributes\\CoversClass;",
+      "use PHPUnit\\Framework\\Attributes\\Group;",
+      "use PHPUnit\\Framework\\Attributes\\Test;",
+      "use PHPUnit\\Framework\\TestCase;",
+      "use ${3:App\\Service\\${4:MyService}};",
+      "",
+      "#[CoversClass(${4:MyService}::class)]",
+      "#[Group('${5:unit}')]",
+      "class ${4:MyService}Test extends TestCase",
+      "{",
+      "    private ${4:MyService} \\$${6:sut};",
+      "",
+      "    protected function setUp(): void",
+      "    {",
+      "        ${7:// TODO: 의존성 모킹 및 SUT 생성}",
+      "    }",
+      "",
+      "    ${0}",
+      "}"
+    ]
+  },
+
+  "tdd-kernel-case": {
+    "prefix": "tdd-kernel",
+    "description": "Symfony KernelTestCase (통합 테스트)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Tests\\${2:Integration}};",
+      "",
+      "use Symfony\\Bundle\\FrameworkBundle\\Test\\KernelTestCase;",
+      "use PHPUnit\\Framework\\Attributes\\Group;",
+      "use PHPUnit\\Framework\\Attributes\\Test;",
+      "",
+      "#[Group('${3:integration}')]",
+      "class ${4:MyTest} extends KernelTestCase",
+      "{",
+      "    protected function setUp(): void",
+      "    {",
+      "        self::bootKernel();",
+      "        ${5:// TODO: 컨테이너에서 서비스 가져오기}",
+      "    }",
+      "",
+      "    ${0}",
+      "}"
+    ]
+  },
+
+  "tdd-webcase": {
+    "prefix": "tdd-web",
+    "description": "Symfony WebTestCase (기능 테스트)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Tests\\${2:Functional}};",
+      "",
+      "use Symfony\\Bundle\\FrameworkBundle\\Test\\WebTestCase;",
+      "use PHPUnit\\Framework\\Attributes\\Group;",
+      "use PHPUnit\\Framework\\Attributes\\Test;",
+      "",
+      "#[Group('${3:functional}')]",
+      "class ${4:MyControllerTest} extends WebTestCase",
+      "{",
+      "    ${0}",
+      "}"
+    ]
+  },
+
+  "tdd-test": {
+    "prefix": "tdd-test",
+    "description": "PHPUnit #[Test] 테스트 메서드",
+    "body": [
+      "#[Test]",
+      "public function ${1:methodName}(): void",
+      "{",
+      "    // Arrange (Given)",
+      "    ${2:// 준비: 테스트 데이터 및 모킹 설정}",
+      "",
+      "    // Act (When)",
+      "    ${3:// 실행: 테스트 대상 메서드 호출}",
+      "",
+      "    // Assert (Then)",
+      "    ${4:// 검증: 결과 확인}",
+      "}"
+    ]
+  },
+
+  "tdd-test-assert": {
+    "prefix": "tdd-assert",
+    "description": "PHPUnit 주요 Assertion 모음",
+    "body": [
+      "// 기본 Assertions",
+      "self::assertSame(${1:expected}, \\$${2:actual});",
+      "self::assertEquals(${1:expected}, \\$${2:actual});",
+      "self::assertTrue(\\$${3:condition});",
+      "self::assertFalse(\\$${3:condition});",
+      "self::assertNull(\\$${4:value});",
+      "self::assertNotNull(\\$${4:value});",
+      "self::assertEmpty(\\$${5:array});",
+      "self::assertNotEmpty(\\$${5:array});",
+      "self::assertCount(${6:expectedCount}, \\$${7:array});",
+      "self::assertContains(\\$${8:needle}, \\$${9:haystack});",
+      "self::assertArrayHasKey('${10:key}', \\$${11:array});",
+      "",
+      "// 문자열 Assertions",
+      "self::assertStringContainsString('${12:needle}', \\$${13:haystack});",
+      "self::assertStringStartsWith('${14:prefix}', \\$${15:string});",
+      "self::assertMatchesRegularExpression('/${16:pattern}/', \\$${17:string});",
+      "",
+      "// 예외 Assertions",
+      "self::expectException(${18:\\RuntimeException}::class);",
+      "self::expectExceptionMessage('${19:에러 메시지}');",
+      "self::expectExceptionCode(${20:0});"
+    ]
+  },
+
+  "tdd-mock": {
+    "prefix": "tdd-mock",
+    "description": "PHPUnit createMock (기본 모킹)",
+    "body": [
+      "\\$${1:mock} = \\$this->createMock(${2:SomeClass}::class);",
+      "\\$${1:mock}",
+      "    ->expects(\\$this->${3:once}())",
+      "    ->method('${4:methodName}')",
+      "    ->with(${5:\\$this->equalTo('${6:expected}')})",
+      "    ->willReturn(${7:'${8:returnValue}'});"
+    ]
+  },
+
+  "tdd-stub": {
+    "prefix": "tdd-stub",
+    "description": "PHPUnit createStub (단순 스텁)",
+    "body": [
+      "\\$${1:stub} = \\$this->createStub(${2:SomeClass}::class);",
+      "\\$${1:stub}",
+      "    ->method('${3:methodName}')",
+      "    ->willReturn(${4:'${5:returnValue}'});"
+    ]
+  },
+
+  "tdd-will-return-map": {
+    "prefix": "tdd-return-map",
+    "description": "PHPUnit willReturnMap (조건별 반환값)",
+    "body": [
+      "\\$${1:mock}->method('${2:methodName}')",
+      "    ->willReturnMap([",
+      "        [${3:'${4:arg1}'}, ${5:'${6:return1}'}],",
+      "        [${7:'${8:arg2}'}, ${9:'${10:return2}'}],",
+      "    ]);"
+    ]
+  },
+
+  "tdd-will-return-callback": {
+    "prefix": "tdd-return-cb",
+    "description": "PHPUnit willReturnCallback",
+    "body": [
+      "\\$${1:mock}->method('${2:methodName}')",
+      "    ->willReturnCallback(function (\\$${3:arg}) {",
+      "        return ${4:// 동적 반환 로직};",
+      "    });"
+    ]
+  },
+
+  "tdd-expect-exception": {
+    "prefix": "tdd-expect",
+    "description": "expectException (TDD: 예외 기대)",
+    "body": [
+      "\\$this->expectException(${1:\\RuntimeException}::class);",
+      "\\$this->expectExceptionMessage('${2:에러 메시지}');",
+      "\\$this->expectExceptionCode(${3:0});"
+    ]
+  },
+
+  "tdd-data-provider": {
+    "prefix": "tdd-provider",
+    "description": "PHPUnit #[DataProvider] + data provider 메서드",
+    "body": [
+      "#[Test]",
+      "#[DataProvider('${1:provideData}')]",
+      "public function ${2:testSomething}(\\$${3:input}, \\$${4:expected}): void",
+      "{",
+      "    \\$result = \\$this->sut->${5:method}(\\$${3:input});",
+      "",
+      "    self::assertSame(\\$${4:expected}, \\$result);",
+      "}",
+      "",
+      "/**",
+      " * @return array<string, array{mixed, mixed}>",
+      " */",
+      "public static function ${1:provideData}(): array",
+      "{",
+      "    return [",
+      "        '${6:case_1}' => [${7:'input1'}, ${8:'expected1'}],",
+      "        '${9:case_2}' => [${10:'input2'}, ${11:'expected2'}],",
+      "    ];",
+      "}"
+    ]
+  },
+
+  "tdd-setup": {
+    "prefix": "tdd-setup",
+    "description": "PHPUnit setUp() 메서드",
+    "body": [
+      "protected function setUp(): void",
+      "{",
+      "    ${1:// Given: 공통 Arrange 단계}",
+      "}"
+    ]
+  },
+
+  "tdd-teardown": {
+    "prefix": "tdd-teardown",
+    "description": "PHPUnit tearDown() 메서드",
+    "body": [
+      "protected function tearDown(): void",
+      "{",
+      "    ${1:// Cleanup}",
+      "    parent::tearDown();",
+      "}"
+    ]
+  },
+
+  "tdd-command-test": {
+    "prefix": "tdd-cmd-test",
+    "description": "Symfony CommandTester 테스트",
+    "body": [
+      "#[Test]",
+      "public function ${1:testCommand}(): void",
+      "{",
+      "    self::bootKernel();",
+      "    \\$application = new Application(self::\\$kernel);",
+      "",
+      "    \\$command = \\$application->find('${2:app:command-name}');",
+      "    \\$commandTester = new CommandTester(\\$command);",
+      "    \\$commandTester->execute([",
+      "        '${3:argument}' => '${4:value}',",
+      "        '--${5:option}' => '${6:opt-value}',",
+      "    ]);",
+      "",
+      "    \\$commandTester->assertCommandIsSuccessful();",
+      "",
+      "    \\$output = \\$commandTester->getDisplay();",
+      "    self::assertStringContainsString('${7:expected_output}', \\$output);",
+      "}"
+    ]
+  },
+
+  "tdd-repo-test": {
+    "prefix": "tdd-repo-test",
+    "description": "Doctrine Repository 테스트 (DataFixtures + KernelTestCase)",
+    "body": [
+      "<?php",
+      "",
+      "namespace ${1:App\\Tests\\Repository};",
+      "",
+      "use App\\Entity\\${2:MyEntity};",
+      "use App\\Repository\\${2:MyEntity}Repository;",
+      "use Doctrine\\ORM\\EntityManagerInterface;",
+      "use Symfony\\Bundle\\FrameworkBundle\\Test\\KernelTestCase;",
+      "use PHPUnit\\Framework\\Attributes\\Group;",
+      "use PHPUnit\\Framework\\Attributes\\Test;",
+      "",
+      "#[Group('${3:repository}')]",
+      "class ${2:MyEntity}RepositoryTest extends KernelTestCase",
+      "{",
+      "    private EntityManagerInterface \\$entityManager;",
+      "    private ${2:MyEntity}Repository \\$repository;",
+      "",
+      "    protected function setUp(): void",
+      "    {",
+      "        self::bootKernel();",
+      "        \\$this->entityManager = self::getContainer()->get(EntityManagerInterface::class);",
+      "        \\$this->repository = self::getContainer()->get(${2:MyEntity}Repository::class);",
+      "    }",
+      "",
+      "    ${0}",
+      "}"
+    ]
+  }
+}

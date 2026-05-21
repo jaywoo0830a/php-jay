@@ -1,0 +1,51 @@
+{
+  "name": "php-symfony-tdd-snippets",
+  "displayName": "PHP Symfony TDD Snippets",
+  "description": "인체공학적인 Symfony + TDD PHP 스니펫 모음. Controller, Entity, Repository, Service, Command, Form, Test 코드를 빠르게 생성하세요.",
+  "version": "1.0.0",
+  "publisher": "jaywoo",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "keywords": [
+    "php",
+    "symfony",
+    "tdd",
+    "phpunit",
+    "snippet",
+    "test-driven-development"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "php",
+        "path": "./snippets/symfony-controller.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/symfony-entity.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/symfony-service.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/symfony-test.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/symfony-form.code-snippets"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaywoo0830a/php-jay.git"
+  },
+  "license": "MIT"
+}
