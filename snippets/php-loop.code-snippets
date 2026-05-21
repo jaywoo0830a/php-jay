@@ -1,0 +1,7 @@
+{
+  "foreach":  { "prefix": "fore",  "body": ["foreach (\\$${1:items} as \\$${2:item}) {", "    ${0}", "}"], "description": "foreach" },
+  "foreach-kv": { "prefix": "forek", "body": ["foreach (\\$${1:items} as \\$${2:k} => \\$${3:v}) {", "    ${0}", "}"], "description": "foreach key=>value" },
+  "for":   { "prefix": "forl", "body": ["for (\\$i = ${1:0}; \\$i < ${2:n}; \\$i++) {", "    ${0}", "}"], "description": "for loop" },
+  "while": { "prefix": "wl",   "body": ["while (\\$${1:cond}) {", "    ${0}", "}"], "description": "while" },
+  "do-while": { "prefix": "dowl", "body": ["do {", "    ${0}", "} while (\\$${1:cond});"], "description": "do-while" }
+}

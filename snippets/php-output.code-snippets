@@ -1,0 +1,12 @@
+{
+  "echo":      { "prefix": "eco",  "body": "echo '${1:msg}';", "description": "echo" },
+  "echo-var":  { "prefix": "ecov", "body": "echo \\$${1:var};", "description": "echo $var" },
+  "print-r":   { "prefix": "pr",   "body": "print_r(\\$${1:var});", "description": "print_r()" },
+  "var-dump":  { "prefix": "vd",   "body": ["var_dump(\\$${1:var});", "die();"], "description": "var_dump() + die()" },
+  "var-export":{ "prefix": "vx",   "body": "var_export(\\$${1:var});", "description": "var_export()" },
+  "include":   { "prefix": "inc",  "body": "include __DIR__ . '/${1:file}.php';", "description": "include" },
+  "include-once": { "prefix": "inco", "body": "include_once __DIR__ . '/${1:file}.php';", "description": "include_once" },
+  "require":   { "prefix": "rqr",  "body": "require __DIR__ . '/${1:file}.php';", "description": "require" },
+  "require-once": { "prefix": "rqro", "body": "require_once __DIR__ . '/${1:file}.php';", "description": "require_once" },
+  "define":    { "prefix": "df",   "body": "define('${1:NAME}', '${2:val}');", "description": "define()" }
+}

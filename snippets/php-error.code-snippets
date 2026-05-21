@@ -1,0 +1,6 @@
+{
+  "try-catch":   { "prefix": "tryc", "body": ["try {", "    ${1}", "} catch (${2:\\Throwable} \\$e) {", "    ${0}", "}"], "description": "try-catch" },
+  "try-cf":      { "prefix": "tryf", "body": ["try {", "    ${1}", "} catch (${2:\\Throwable} \\$e) {", "    ${3}", "} finally {", "    ${0}", "}"], "description": "try-catch-finally" },
+  "catch-block": { "prefix": "cat",  "body": ["catch (${1:\\Throwable} \\$e) {", "    ${0}", "}"], "description": "catch (addon)" },
+  "throw":       { "prefix": "thr",  "body": "throw new ${1:\\RuntimeException}('${2:msg}');", "description": "throw new" }
+}

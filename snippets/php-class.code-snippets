@@ -1,0 +1,12 @@
+{
+  "class":          { "prefix": "cl",   "body": ["class ${1:Name}", "{", "    ${0}", "}"], "description": "class" },
+  "class-extends":  { "prefix": "clx",  "body": ["class ${1:Name} extends ${2:Parent}", "{", "    ${0}", "}"], "description": "class extends" },
+  "class-impl":     { "prefix": "cli",  "body": ["class ${1:Name} implements ${2:Interface}", "{", "    ${0}", "}"], "description": "class implements" },
+  "class-ext-impl": { "prefix": "clxi", "body": ["class ${1:Name} extends ${2:Parent} implements ${3:Interface}", "{", "    ${0}", "}"], "description": "class extends+implements" },
+  "abstract-class": { "prefix": "acl",  "body": ["abstract class ${1:Name}", "{", "    ${0}", "}"], "description": "abstract class" },
+  "final-class":    { "prefix": "fcl",  "body": ["final class ${1:Name}", "{", "    ${0}", "}"], "description": "final class" },
+  "readonly-class": { "prefix": "rcl",  "body": ["readonly class ${1:Name}", "{", "    ${0}", "}"], "description": "readonly class (PHP 8.2+)" },
+  "interface":     { "prefix": "in",    "body": ["interface ${1:Name}", "{", "    ${0}", "}"], "description": "interface" },
+  "trait":         { "prefix": "trt",   "body": ["trait ${1:Name}", "{", "    ${0}", "}"], "description": "trait" },
+  "enum":          { "prefix": "enum",  "body": ["enum ${1:Name}${2:: string}", "{", "    case ${3:A} = '${4:a}';", "    ${0}", "}"], "description": "enum (PHP 8.1+)" }
+}

@@ -1,0 +1,10 @@
+{
+  "pub-func":         { "prefix": "pubf",  "body": ["public function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "public function" },
+  "pub-static":       { "prefix": "pubsf", "body": ["public static function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "public static function" },
+  "prot-func":        { "prefix": "prof",  "body": ["protected function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "protected function" },
+  "prot-static":      { "prefix": "prosf", "body": ["protected static function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "protected static function" },
+  "priv-func":        { "prefix": "prif",  "body": ["private function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "private function" },
+  "priv-static":      { "prefix": "prisf", "body": ["private static function ${1:name}(${2}): ${3:void}", "{", "    ${0}", "}"], "description": "private static function" },
+  "constructor":      { "prefix": "pubc",  "body": ["public function __construct(${1})", "{", "    ${0}", "}"], "description": "__construct" },
+  "constructor-promo": { "prefix": "cpp",  "body": ["public function __construct(", "    ${1:public} ${2:readonly} ${3:string} \\$${4:prop},", "    ${0}", ") {}"], "description": "Constructor property promotion (PHP 8.0+)" }
+}

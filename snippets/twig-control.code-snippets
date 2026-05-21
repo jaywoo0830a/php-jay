@@ -1,0 +1,14 @@
+{
+  "if":       { "prefix": "tw-if",    "body": ["{% if ${1:cond} %}", "    ${0}", "{% endif %}"], "description": "{% if %}" },
+  "if-else":  { "prefix": "tw-ifel",  "body": ["{% if ${1:cond} %}", "    ${2}", "{% else %}", "    ${0}", "{% endif %}"], "description": "{% if %}...{% else %}" },
+  "if-elseif":{ "prefix": "tw-ifelif","body": ["{% if ${1:a} %}", "    ${2}", "{% elseif ${3:b} %}", "    ${4}", "{% else %}", "    ${0}", "{% endif %}"], "description": "{% if %}...{% elseif %}...{% else %}" },
+  "for":      { "prefix": "tw-for",   "body": ["{% for ${1:item} in ${2:items} %}", "    ${0}", "{% endfor %}"], "description": "{% for %}" },
+  "for-kv":   { "prefix": "tw-fork",  "body": ["{% for ${1:k}, ${2:v} in ${3:items} %}", "    ${0}", "{% endfor %}"], "description": "{% for k,v %}" },
+  "for-else": { "prefix": "tw-fore",  "body": ["{% for ${1:item} in ${2:items} %}", "    ${3}", "{% else %}", "    ${4:No items.}", "{% endfor %}"], "description": "for-else" },
+  "spaceless":{ "prefix": "tw-spaceless","body": ["{% apply spaceless %}", "    ${0}", "{% endapply %}"], "description": "{% apply spaceless %}" },
+  "empty":    { "prefix": "tw-empty", "body": ["{% if ${1:items} is empty %}", "    ${0}", "{% endif %}"], "description": "is empty" },
+  "not-empty":{ "prefix": "tw-nempty","body": ["{% if ${1:items} is not empty %}", "    ${0}", "{% endif %}"], "description": "is not empty" },
+  "defined":  { "prefix": "tw-defined","body": ["{% if ${1:var} is defined %}", "    ${0}", "{% endif %}"], "description": "is defined" },
+  "null":     { "prefix": "tw-null",  "body": ["{% if ${1:var} is null %}", "    ${0}", "{% endif %}"], "description": "is null" },
+  "loop-index":{ "prefix": "tw-loop", "body": "{{ loop.index${1:0} }}", "description": "loop.index" }
+}

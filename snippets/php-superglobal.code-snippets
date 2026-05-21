@@ -1,0 +1,11 @@
+{
+  "get":  { "prefix": "gget",  "body": "\\$_GET['${1:key}']",  "description": "$_GET" },
+  "post": { "prefix": "gpost", "body": "\\$_POST['${1:key}']", "description": "$_POST" },
+  "session": { "prefix": "gss", "body": "\\$_SESSION['${1:key}']", "description": "$_SESSION" },
+  "server": { "prefix": "gser", "body": "\\$_SERVER['${1:key}']", "description": "$_SERVER" },
+  "cookie": { "prefix": "gcook", "body": "\\$_COOKIE['${1:key}']", "description": "$_COOKIE" },
+  "files": { "prefix": "gfile", "body": "\\$_FILES['${1:key}']['${2:name}']", "description": "$_FILES" },
+  "request": { "prefix": "greq", "body": "\\$_REQUEST['${1:key}']", "description": "$_REQUEST" },
+  "env": { "prefix": "genv", "body": "\\$_ENV['${1:key}']", "description": "$_ENV" },
+  "globals": { "prefix": "gglob", "body": "\\$GLOBALS['${1:key}']", "description": "$GLOBALS" }
+}

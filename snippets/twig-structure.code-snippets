@@ -1,0 +1,13 @@
+{
+  "extends":  { "prefix": "tw-extends",  "body": "{% extends '${1:base.html.twig}' %}", "description": "{% extends %}" },
+  "block":    { "prefix": "tw-block",    "body": ["{% block ${1:name} %}", "    ${0}", "{% endblock %}"], "description": "{% block %}" },
+  "block-short": { "prefix": "tw-blocks", "body": "{% block ${1:name} %}${2:content}{% endblock %}", "description": "{% block %} (short)" },
+  "parent":   { "prefix": "tw-parent",   "body": "{{ parent() }}", "description": "{{ parent() }}" },
+  "include":  { "prefix": "tw-include",  "body": "{{ include('${1:template.html.twig}'${2:, {${3:k}: ${4:v}}}) }}", "description": "{{ include() }}" },
+  "embed":    { "prefix": "tw-embed",    "body": ["{% embed '${1:tpl.html.twig}' %}", "    {% block ${2:name} %}", "        ${0}", "    {% endblock %}", "{% endembed %}"], "description": "{% embed %}" },
+  "use":      { "prefix": "tw-use",      "body": "{% use '${1:tpl.html.twig}' %}", "description": "{% use %}" },
+  "set":      { "prefix": "tw-set",      "body": "{% set ${1:var} = ${2:val} %}", "description": "{% set %}" },
+  "set-block":{ "prefix": "tw-setb",     "body": ["{% set ${1:var} %}", "    ${2}", "{% endset %}"], "description": "{% set %} block" },
+  "with":     { "prefix": "tw-with",     "body": ["{% with {${1:k}: ${2:v}} %}", "    ${0}", "{% endwith %}"], "description": "{% with %}" },
+  "comment":  { "prefix": "tw-comment",  "body": "{# ${1:comment} #}", "description": "{# comment #}" }
+}

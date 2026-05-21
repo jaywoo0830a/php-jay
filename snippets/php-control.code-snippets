@@ -1,0 +1,13 @@
+{
+  "if-brace":  { "prefix": "ifb", "body": ["if (\\$${1:cond}) {", "    ${0}", "}"], "description": "if 블록" },
+  "if-else":   { "prefix": "ifel", "body": ["if (\\$${1:cond}) {", "    ${2}", "} else {", "    ${0}", "}"], "description": "if-else" },
+  "if-elseif": { "prefix": "ifelif", "body": ["if (\\$${1:a}) {", "    ${2}", "} elseif (\\$${3:b}) {", "    ${4}", "} else {", "    ${0}", "}"], "description": "if-elseif-else" },
+  "if-colon":  { "prefix": "ifen", "body": ["if (\\$${1:cond}):", "    ${0}", "endif;"], "description": "if(): endif;" },
+  "if-else-colon": { "prefix": "ifelen", "body": ["if (\\$${1:cond}):", "    ${2}", "else:", "    ${0}", "endif;"], "description": "if(): else: endif;" },
+  "switch":    { "prefix": "sw", "body": ["switch (\\$${1:var}) {", "    case '${2:val}':", "        ${3}", "        break;", "    default:", "        ${0}", "        break;", "}"], "description": "switch" },
+  "case":      { "prefix": "cs", "body": ["case '${1:val}':", "    ${2}", "    break;"], "description": "case (addon)" },
+  "ternary":   { "prefix": "tern", "body": "\\$${1:cond} ? ${2:true} : ${3:false}", "description": "삼항 연산자" },
+  "null-coalesce": { "prefix": "ncoa", "body": "\\$${1:var} ?? ${2:default}", "description": "?? 널 병합" },
+  "match":     { "prefix": "match", "body": ["match (\\$${1:val}) {", "    ${2:'a'} => ${3:'A'},", "    default => ${4:'X'},", "};"], "description": "match (PHP 8.0+)" },
+  "match-true": { "prefix": "matcht", "body": ["match (true) {", "    \\$${1:a} => ${2:'X'},", "    \\$${3:b} => ${4:'Y'},", "    default => ${5:'Z'},", "};"], "description": "match(true) (PHP 8.0+)" }
+}

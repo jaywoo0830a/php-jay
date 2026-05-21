@@ -1,7 +1,7 @@
 {
-  "name": "php-symfony-tdd-snippets",
-  "displayName": "PHP Symfony TDD Snippets",
-  "description": "인체공학적인 Symfony + TDD PHP 스니펫 모음. Controller, Entity, Repository, Service, Command, Form, Test 코드를 빠르게 생성하세요.",
+  "name": "php-jay",
+  "displayName": "php-jay",
+  "description": "인체공학적 PHP + Symfony + TDD 스니펫 모음. 최신 PHP 8.x 문법, Symfony Controller, Entity, Service, Command, Form, PHPUnit 테스트 코드를 빠르게 생성하세요.",
   "version": "1.0.0",
   "publisher": "jaywoo",
   "icon": "icon.png",
@@ -17,30 +17,35 @@
     "tdd",
     "phpunit",
     "snippet",
-    "test-driven-development"
+    "test-driven-development",
+    "php8",
+    "doctrine",
+    "modern-php",
+    "twig"
   ],
   "contributes": {
     "snippets": [
-      {
-        "language": "php",
-        "path": "./snippets/symfony-controller.code-snippets"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/symfony-entity.code-snippets"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/symfony-service.code-snippets"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/symfony-test.code-snippets"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/symfony-form.code-snippets"
-      }
+      { "language": "php",  "path": "./snippets/php-tag.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-superglobal.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-array.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-control.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-loop.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-class.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-function.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-error.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-output.code-snippets" },
+      { "language": "php",  "path": "./snippets/php-modern.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-controller.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-entity.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-service.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-security.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-test.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-test-extras.code-snippets" },
+      { "language": "php",  "path": "./snippets/sf-form.code-snippets" },
+      { "language": "twig", "path": "./snippets/twig-structure.code-snippets" },
+      { "language": "twig", "path": "./snippets/twig-control.code-snippets" },
+      { "language": "twig", "path": "./snippets/twig-output.code-snippets" },
+      { "language": "twig", "path": "./snippets/twig-symfony.code-snippets" }
     ]
   },
   "repository": {

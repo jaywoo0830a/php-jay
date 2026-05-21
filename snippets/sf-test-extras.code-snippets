@@ -1,0 +1,91 @@
+{
+  "tdd-repo": {
+    "prefix": "tdd-repo",
+    "description": "Doctrine Repository 테스트 (KernelTestCase)",
+    "body": [
+      "<?php", "", "namespace ${1:App\\Tests\\Repository};", "",
+      "use App\\Repository\\${2:MyEntity}Repository;",
+      "use Symfony\\Bundle\\FrameworkBundle\\Test\\KernelTestCase;",
+      "use PHPUnit\\Framework\\Attributes\\Test;",
+      "use PHPUnit\\Framework\\Attributes\\Group;",
+      "",
+      "#[Group('${3:repository}')]",
+      "class ${2:MyEntity}RepositoryTest extends KernelTestCase",
+      "{",
+      "    private ${2:MyEntity}Repository \\$repository;",
+      "",
+      "    protected function setUp(): void",
+      "    {",
+      "        self::bootKernel();",
+      "        \\$this->repository = self::getContainer()->get(${2:MyEntity}Repository::class);",
+      "    }",
+      "",
+      "    ${0}",
+      "}"
+    ]
+  },
+  "tdd-web-assert": {
+    "prefix": "tdd-wa",
+    "description": "WebTestCase 주요 Assertion 모음",
+    "body": [
+      "// Response Assertions",
+      "\\$this->assertResponseIsSuccessful();",
+      "\\$this->assertResponseStatusCodeSame(${1:200});",
+      "\\$this->assertResponseRedirects('${2:/target}'${3:, ${4:302}});",
+      "\\$this->assertResponseHeaderSame('${5:content-type}', '${6:text/html}');",
+      "",
+      "// Crawler Assertions",
+      "\\$this->assertSelectorTextContains('${7:h1}', '${8:Hello}');",
+      "\\$this->assertSelectorExists('${9:.my-class}');",
+      "\\$this->assertSelectorCount(${10:3}, '${11:li}');",
+      "\\$this->assertPageTitleSame('${12:Title}');",
+      "\\$this->assertInputValueSame('${13:field_name}', '${14:expected}');",
+      "",
+      "// Request Assertions",
+      "\\$this->assertRouteSame('${15:route_name}');"
+    ]
+  },
+  "tdd-web-login": {
+    "prefix": "tdw-login",
+    "description": "WebTestCase loginUser() 패턴",
+    "body": [
+      "use App\\Repository\\UserRepository;",
+      "",
+      "\\$client = static::createClient();",
+      "\\$testUser = static::getContainer()->get(UserRepository::class)->findOneByEmail('${1:test@example.com}');",
+      "\\$client->loginUser(\\$testUser);",
+      "",
+      "\\$client->request('GET', '${2:/profile}');",
+      "\\$this->assertResponseIsSuccessful();"
+    ]
+  },
+  "tdd-web-form": {
+    "prefix": "tdw-form",
+    "description": "WebTestCase form submit 패턴",
+    "body": [
+      "\\$client = static::createClient();",
+      "\\$crawler = \\$client->request('GET', '${1:/new}');",
+      "",
+      "\\$form = \\$crawler->selectButton('${2:Submit}')->form();",
+      "\\$client->submit(\\$form, [",
+      "    '${3:form_name}[${4:field}]' => '${5:value}',",
+      "]);",
+      "",
+      "\\$this->assertResponseRedirects();",
+      "\\$client->followRedirect();",
+      "\\$this->assertSelectorTextContains('${6:.alert}', '${7:Success}');"
+    ]
+  },
+  "tdd-mail-assert": {
+    "prefix": "tdw-mail",
+    "description": "Mailer assertion",
+    "body": [
+      "\\$this->assertEmailCount(${1:1});",
+      "",
+      "\\$email = \\$this->getMailerMessage(${2:0});",
+      "\\$this->assertEmailSubjectContains(\\$email, '${3:subject}');",
+      "\\$this->assertEmailTextBodyContains(\\$email, '${4:text}');",
+      "\\$this->assertEmailAddressContains(\\$email, 'To', '${5:user@example.com}');"
+    ]
+  }
+}

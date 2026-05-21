@@ -1,0 +1,7 @@
+{
+  "php-tag": { "prefix": "php", "body": ["<?php", "", "${0}", "", "?>"], "description": "<?php ?> 태그" },
+  "php-open": { "prefix": "po", "body": "<?php", "description": "<?php 열기 태그" },
+  "php-close": { "prefix": "pc", "body": "?>", "description": "?> 닫기 태그" },
+  "php-echo-short": { "prefix": "peco", "body": "<?= \\$${1:var} ?>", "description": "<?= ?> 단축 echo" },
+  "php-declare": { "prefix": "pds", "body": ["<?php", "", "declare(strict_types=1);", "", "namespace ${1:App};", "", "${0}"], "description": "declare(strict_types=1) + namespace" }
+}
